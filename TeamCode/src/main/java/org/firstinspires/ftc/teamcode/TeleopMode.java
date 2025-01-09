@@ -4,14 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Climber;
 import org.firstinspires.ftc.teamcode.Gobeur;
 import org.firstinspires.ftc.teamcode.Slider;
 import org.firstinspires.ftc.teamcode.Box;
 
-@TeleOp(name = "Teleop_Test")   //Mode
+@TeleOp(name = "Teleop")   //Mode
 
 public class MecanumTeleOp extends LinearOpMode {  // Basic code here
 
@@ -66,15 +65,39 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
                 double left_trigger = this.gamepad2.left_trigger;
                 double cl;
                 double cr;
-                double gobeur;
-                double pivot;
-                double slider;
+               
+                double gobeurPosition = 0;
+                double pivotPosition = 0;
+                double sliderPosition = 0;
                 double box;
+                
+              if (gamepad1.dpad_up){
+               sliderPosition = 1;  
+              }
+              
+                if (gamepad1.dpad_down){
+               sliderPosition = -1;  
+              }
+              
+              if (gamepad1.b){
+                  gobeurPosition = 1;
+              }
+              
               if (gamepad1.a){
-                  
+                  gobeurPosition = -1;
+              }
+              
+              if (gamepad1.y){
+                  pivotPosition = -1;
+              }
+              
+              if (gamepad1.a){
+                  pivotPosition = -1;
               }
 
-              
+              slider.setSpeed(sliderPosition);
+              gobeur.setSpeed(gobeurPosition);
+              pivot.setSpeed(pivotPosition);
                 //   telemetry.addData("Gyro", imu);
                 telemetry.update();
             }
