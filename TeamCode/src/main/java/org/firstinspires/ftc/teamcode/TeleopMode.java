@@ -63,9 +63,9 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
                 double right_axisX = -this.gamepad1.right_stick_x;
                 double right_trigger = this.gamepad2.right_trigger;
                 double left_trigger = this.gamepad2.left_trigger;
-                double cl;
-                double cr;
                
+                double clPosition = 0;
+                double crPosition = 0;
                 double gobeurPosition = 0;
                 double pivotPosition = 0;
                 double sliderPosition = 0;
@@ -95,9 +95,22 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
                   pivotPosition = 1;
               }
 
+              if (gamepad1.right_trigger){
+                 clPosition = 1
+                 crPosition = -1
+              }
+               
+              if (gamepad1.left_trigger){
+                  clPosition = -1
+                  crPosition = 1
+              }
+
+
               slider.setSpeed(sliderPosition);
               gobeur.setSpeed(gobeurPosition);
               pivot.setSpeed(pivotPosition);
+              cl.setSpeed(clPosition);
+              cr.setSpeed(crPosition);
                 //   telemetry.addData("Gyro", imu);
                 telemetry.update();
             }
