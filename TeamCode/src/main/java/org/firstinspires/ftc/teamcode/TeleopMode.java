@@ -104,13 +104,13 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
               }
 
               if (gamepad1.right_trigger){
-                 clPosition = 1
-                 crPosition = -1
+                 clPosition = 1;
+                 crPosition = -1;
               }
                
               if (gamepad1.left_trigger){
-                  clPosition = -1
-                  crPosition = 1
+                  clPosition = -1;
+                  crPosition = 1;
               }
 
 
