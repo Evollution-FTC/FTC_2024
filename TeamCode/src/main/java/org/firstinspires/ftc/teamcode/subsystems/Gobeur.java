@@ -2,15 +2,15 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 
-public class Pince {
+public class Gobeur {
 
-    private CRServo pince;
+    private CRServo servo;
 
-    public Pince(CRServo pince){
-        this.pince = pince;
+    public Gobeur(CRServo servo){
+        this.servo = servo;
 
     }
     public void setSpeed(double power){
-        pince.setPower(power);
+        servo.setPower(power);
     }
 }
