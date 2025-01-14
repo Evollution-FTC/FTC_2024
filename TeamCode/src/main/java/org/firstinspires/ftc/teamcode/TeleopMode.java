@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;  //Folder
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Gyroscope;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -9,6 +10,7 @@ import org.firstinspires.ftc.teamcode.Climber;
 import org.firstinspires.ftc.teamcode.Gobeur;
 import org.firstinspires.ftc.teamcode.Slider;
 import org.firstinspires.ftc.teamcode.Box;
+import org.firstinspires.ftc.teamcode.Drivetrain;
 
 @TeleOp(name = "Teleop")   //Mode
 
@@ -22,19 +24,19 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
     private Gobeur pivot; // point pivot de la pince
     private Slider slider;
     private Box box;
+    private Drivetrain drivetrain;
 
 
 
     @Override
     public void runOpMode() {   //run while init
 
-       //drivetrain = new Drivetrain(
-            //    hardwareMap.dcMotor.get("fl"),
-            //    hardwareMap.dcMotor.get("fr"),
-             //   hardwareMap.dcMotor.get("bl"),
-            //    hardwareMap.dcMotor.get("br"));
-
-       // imu = hardwareMap.get(Gyroscope.class, "imu");       // Defining which object is what on the robot
+       drivetrain = new Drivetrain(
+               hardwareMap.dcMotor.get("fl"),
+                hardwareMap.dcMotor.get("fr"),
+                hardwareMap.dcMotor.get("bl"),
+               hardwareMap.dcMotor.get("br"));
+        // imu = hardwareMap.get(Gyroscope.class, "imu");       // Defining which object is what on the robot
         cl = new Climber(hardwareMap.get(DcMotor.class, "cl"));
         cr = new Climber(hardwareMap.get(DcMotor.class, "cr"));
         gobeur = new Gobeur(hardwareMap.get(CRServo.class, "gobeur"));
@@ -58,9 +60,9 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
 
             while (opModeIsActive()) {
 
-                double left_axisY = -this.gamepad1.left_stick_y;
-                double left_axisX = -this.gamepad1.left_stick_x;//define the joystick variable
-                double right_axisX = -this.gamepad1.right_stick_x;
+                double left_axisY = -this.gamepad2.left_stick_y;
+                double left_axisX = -this.gamepad2.left_stick_x;//define the joystick variable
+                double right_axisX = -this.gamepad2.right_stick_x;
                 double right_trigger = this.gamepad2.right_trigger;
                 double left_trigger = this.gamepad2.left_trigger;
                
