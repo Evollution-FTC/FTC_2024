@@ -29,10 +29,10 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
     public void runOpMode() {   //run while init
 
        //drivetrain = new Drivetrain(
-            //    hardwareMap.dcMotor.get("frontLeft"),
-            //    hardwareMap.dcMotor.get("frontRight"),
-             //   hardwareMap.dcMotor.get("rearLeft"),
-            //    hardwareMap.dcMotor.get("rearRight"));
+            //    hardwareMap.dcMotor.get("fl"),
+            //    hardwareMap.dcMotor.get("fr"),
+             //   hardwareMap.dcMotor.get("bl"),
+            //    hardwareMap.dcMotor.get("br"));
 
        // imu = hardwareMap.get(Gyroscope.class, "imu");       // Defining which object is what on the robot
         cl = new Climber(hardwareMap.get(DcMotor.class, "cl"));
@@ -79,11 +79,11 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
                sliderPosition = -1;  
               }
 
-               if (gamepad.dpad_right){
+               if (gamepad1.dpad_right){
                   boxPosition = 1;
                }
                
-               if (gamepad.dpad_left){
+               if (gamepad1.dpad_left){
                   boxPosition = -1;
                }
               
@@ -103,12 +103,12 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
                   pivotPosition = 1;
               }
 
-              if (gamepad1.right_trigger){
+              if (gamepad1.right_bumper){
                  clPosition = 1;
                  crPosition = -1;
               }
                
-              if (gamepad1.left_trigger){
+              if (gamepad1.left_bumper){
                   clPosition = -1;
                   crPosition = 1;
               }
