@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsystems;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -9,11 +9,13 @@ public class Drivetrain {
     private DcMotor rearRight;
     private DcMotor rearLeft;
     private  boolean _state;
+    
     public Drivetrain(DcMotor frontLeft, DcMotor frontRight, DcMotor rearLeft, DcMotor rearRight){
         this.frontLeft = frontLeft;
         this.frontRight = frontRight;
         this.rearLeft = rearLeft;
         this.rearRight = rearRight;
+    
 
         frontRight.setDirection(DcMotorSimple.Direction.FORWARD);   // setting the motor direction
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
