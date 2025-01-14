@@ -60,9 +60,9 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
 
             while (opModeIsActive()) {
 
-                double left_axisY = -this.gamepad2.left_stick_y;
-                double left_axisX = -this.gamepad2.left_stick_x;//define the joystick variable
-                double right_axisX = -this.gamepad2.right_stick_x;
+                double y = this.gamepad2.left_stick_y;
+                double x = this.gamepad2.left_stick_x;//define the joystick variable
+                double r = this.gamepad2.right_stick_x;
                 double right_trigger = this.gamepad2.right_trigger;
                 double left_trigger = this.gamepad2.left_trigger;
                
@@ -121,7 +121,8 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
               pivot.setSpeed(pivotPosition);
               cl.setSpeed(clPosition);
               cr.setSpeed(crPosition);
-              box.setSpeed(boxPosition);
+              drivetrain.mecanumDrive(x,y,r);
+              
                 //   telemetry.addData("Gyro", imu);
                 telemetry.update();
             }
