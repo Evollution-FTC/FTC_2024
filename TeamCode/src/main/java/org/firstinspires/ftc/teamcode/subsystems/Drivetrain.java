@@ -38,17 +38,17 @@ public class Drivetrain {
         }
     }
 
-    public void mecanumDrive(double X, double Y, double R){    //Fonction for an easy tank drive(taken from FRC )
+    public void mecanumDrive(double x, double y, double r){    //Fonction for an easy tank drive(taken from FRC )
        if(slowMode) {
-           frontLeft.setPower(X/2 + Y/2 + R/2);
-           frontRight.setPower(X/2 - Y/2 - R/2);
-           rearLeft.setPower(X/2 - Y/2 + R/2);
-           rearRight.setPower(X/2 + Y/2 -R/2);
+           frontLeft.setPower(y/2 + x/2 + r/2);
+           frontRight.setPower(y/2 - x/2 - r/2);
+           rearLeft.setPower(y/2 - x/2 + r/2);
+           rearRight.setPower(y/2 + x/2 -r/2);
        }else {
-           frontLeft.setPower(X + Y + R);
-           frontRight.setPower(X - Y - R);
-           rearLeft.setPower(X - Y + R);
-           rearRight.setPower(X + Y - R);
+           frontLeft.setPower(y + x + r);
+           frontRight.setPower(y - x - r);
+           rearLeft.setPower(y - x + r);
+           rearRight.setPower(y + x - r);
        }
 
     }
