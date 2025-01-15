@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.Gobeur;
 import org.firstinspires.ftc.teamcode.Slider;
 import org.firstinspires.ftc.teamcode.Box;
 import org.firstinspires.ftc.teamcode.Drivetrain;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 @TeleOp(name = "Teleop")   //Mode
 
@@ -25,6 +26,7 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
     private Slider slider;
     private Box box;
     private Drivetrain drivetrain;
+    
 
 
 
@@ -43,6 +45,7 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
         pivot = new Gobeur(hardwareMap.get(CRServo.class, "pivot"));
         slider = new Slider(hardwareMap.get(DcMotor.class, "slider"));
         box = new Box(hardwareMap.get(CRServo.class, "box"));
+        
 
 
 
@@ -122,6 +125,7 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
               cl.setSpeed(clPosition);
               cr.setSpeed(crPosition);
               drivetrain.mecanumDrive(x,y,r);
+              box.setSpeed(boxPosition);
               
                 //   telemetry.addData("Gyro", imu);
                 telemetry.update();
