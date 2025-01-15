@@ -45,7 +45,13 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
         pivot = new Gobeur(hardwareMap.get(CRServo.class, "pivot"));
         slider = new Slider(hardwareMap.get(DcMotor.class, "slider"));
         box = new Box(hardwareMap.get(CRServo.class, "box"));
+        DigitalChannel in2 = hardwareMap.digitalChannel.get("LimitIn2");
+        DigitalChannel out = hardwareMap.digitalChannel.get("LimitOut");
+        DigitalChannel in = hardwareMap.digitalChannel.get("LimitIn");
+
         
+
+
 
 
 
@@ -76,11 +82,11 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
                 double sliderPosition = 0;
                 double boxPosition = 0;
                 
-              if (gamepad1.dpad_up){
-               sliderPosition = 1;  
+              if (gamepad1.dpad_up & out.getState()){
+               sliderPosition = 0.75;  
               }
               
-                if (gamepad1.dpad_down){
+                if (gamepad1.dpad_down & in.getState()){
                sliderPosition = -1;  
               }
 
@@ -100,7 +106,7 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
                   gobeurPosition = 1;
               }
               
-              if (gamepad1.y){
+              if (gamepad1.y & in2.getState()){
                   pivotPosition = -1;
               }
               
