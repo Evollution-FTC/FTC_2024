@@ -66,6 +66,8 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
         telemetry.update();
         double boxPosition = -1;
         double sliderPosition = 0;
+        int pos = 0;
+
 
 
         if(opModeIsActive()) {
@@ -77,32 +79,34 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
                 double r = this.gamepad2.right_stick_x;
                 double s = -this.gamepad1.left_stick_y/2;
                 double position = -this.gamepad1.left_stick_y;
-                int pos = 0;
+                
                 double clPosition = 0;
                 double crPosition = 0;
                 double gobeurPosition = 0;
                 double pivotPosition = 0;
-                
 
              
             
               if (!out.getState() & !(position < 0)){
                s = 0;  
               }
-              
                 if (!in.getState() & !(position > 0)){
                s = 0;  
               }
-           
-               if(gamepad1.right_trigger > 0.5){
+           if (gamepad1.dpad_up){
+               pos = pos + 1;
+           }
+            if (gamepad1.dpad_down){
+               pos = pos - 1;
+           }
+               if((pos == 0)){
                     boxPosition = -1;
-                }
-               if (gamepad1.dpad_right){
-                  boxPosition = 1; 
                }
-               
-               if (gamepad1.dpad_left){
+               if ((pos == 1)){
                   boxPosition = -0.75;
+               }
+                if ((pos == 2)){
+                  boxPosition = 1; 
                }
               
               if (gamepad1.b){
