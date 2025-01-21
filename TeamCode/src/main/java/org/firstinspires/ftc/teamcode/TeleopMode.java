@@ -65,6 +65,8 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
         telemetry.addData("Status", "Running");   // print in console
         telemetry.update();
         double boxPosition = -1;
+        double sliderPosition = 0;
+
 
         if(opModeIsActive()) {
 
@@ -73,34 +75,34 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
                 double y = this.gamepad2.left_stick_y;
                 double x = this.gamepad2.left_stick_x;//define the joystick variable
                 double r = this.gamepad2.right_stick_x;
-                double right_trigger = this.gamepad2.right_trigger;
-                double left_trigger = this.gamepad2.left_trigger;
-               
+                double s = -this.gamepad1.left_stick_y/2;
+                double position = -this.gamepad1.left_stick_y;
+                int pos = 0;
                 double clPosition = 0;
                 double crPosition = 0;
                 double gobeurPosition = 0;
                 double pivotPosition = 0;
-                double sliderPosition = 0;
                 
 
-                if(gamepad1.right_trigger > 0.5){
-                    boxPosition = -1;
-                }
+             
             
-              if (gamepad1.dpad_up & out.getState()){
-               sliderPosition = 0.75;  
+              if (!out.getState() & !(position < 0)){
+               s = 0;  
               }
               
-                if (gamepad1.dpad_down & in.getState()){
-               sliderPosition = -1;  
+                if (!in.getState() & !(position > 0)){
+               s = 0;  
               }
-
+           
+               if(gamepad1.right_trigger > 0.5){
+                    boxPosition = -1;
+                }
                if (gamepad1.dpad_right){
-                  boxPosition = 1;
+                  boxPosition = 1; 
                }
                
                if (gamepad1.dpad_left){
-                  boxPosition = -0.5;
+                  boxPosition = -0.75;
                }
               
               if (gamepad1.b){
@@ -130,7 +132,7 @@ public class MecanumTeleOp extends LinearOpMode {  // Basic code here
               }
 
 
-              slider.setSpeed(sliderPosition);
+              slider.setSpeed(s);
               gobeur.setSpeed(gobeurPosition);
               pivot.setSpeed(pivotPosition);
               cl.setSpeed(clPosition);
