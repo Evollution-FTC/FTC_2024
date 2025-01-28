@@ -2,31 +2,51 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.Gyroscope;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 
-import org.firstinspires.ftc.teamcode.subsystems.Crochet;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.Climber;
+import org.firstinspires.ftc.teamcode.Gobeur;
+import org.firstinspires.ftc.teamcode.Slider;
+import org.firstinspires.ftc.teamcode.Box;
+import org.firstinspires.ftc.teamcode.Drivetrain;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 
-@Autonomous(name = "Autonome Rouge", group = "")
+import org.firstinspires.ftc.teamcode.Drivetrain;
+
+@Autonomous(name = "Autonome", group = "")
 
 
 public class AutonomousTest extends LinearOpMode {
 
     private Drivetrain drivetrain;
-    private Crochet crochet;
-
+    private Gobeur gobeur;
+    private Gobeur pivot; // point pivot de la pince
+    private Slider slider;
+    private Box box;
+    
     @Override
     public void runOpMode(){
 
 
-        crochet = new Crochet(hardwareMap.get(Servo.class, "crochetRight"), hardwareMap.get(Servo.class, "crochetLeft"));
-
+     
         drivetrain = new Drivetrain(
-                hardwareMap.dcMotor.get("frontLeft"),
-                hardwareMap.dcMotor.get("frontRight"),
-                hardwareMap.dcMotor.get("rearLeft"),
-                hardwareMap.dcMotor.get("rearRight"));
+                hardwareMap.dcMotor.get("fl"),
+                hardwareMap.dcMotor.get("fr"),
+                hardwareMap.dcMotor.get("bl"),
+                hardwareMap.dcMotor.get("br"));
+       
+        gobeur = new Gobeur(hardwareMap.get(CRServo.class, "gobeur"));
+        pivot = new Gobeur(hardwareMap.get(CRServo.class, "pivot"));
+        slider = new Slider(hardwareMap.get(DcMotor.class, "slider"));
+        box = new Box(hardwareMap.get(CRServo.class, "box"));
+        DigitalChannel in2 = hardwareMap.digitalChannel.get("LimitIn2");
+        DigitalChannel out = hardwareMap.digitalChannel.get("LimitOut");
+        DigitalChannel in = hardwareMap.digitalChannel.get("LimitIn");
 
 
 
@@ -39,18 +59,27 @@ public class AutonomousTest extends LinearOpMode {
         waitForStart();
 
 
-        drivetrain.setAllPositionSide(.5, -1, 1);
-        drivetrain.setAllPosition(.25, 4, 4);
-        crochet.switchState();
-        sleep(250);
-        drivetrain.setAllPosition(.75, -6, -6);
-        crochet.switchState();
-        drivetrain.setAllPositionSide(.75, 2, -2);
-        drivetrain.setAllPosition(.75, 5, 5);
-        drivetrain.setAllPositionSide(.75, -2, 2);
-        drivetrain.setAllPosition(.75, -4, -4);
-        drivetrain.setAllPositionSide(1, 3, -3);
-        drivetrain.setAllPosition(.5, 1, 1);
+        pivot.setSpeed(1);
+        sleep(150);
+        drivetrain.setAllPosition(.25, 1, 1);
+        sleep(150);
+        box.setSpeed(-0.75);
+        sleep(150);
+        if (in.getState()) { 
+            slider.setSpeed(-0.5);
+            
+        }
+        sleep(150);
+        box.setSpeed(1);
+        sleep(150);        
+        box.setSpeed(-0.75);
+        sleep(150);
+        if (out.getState()) { 
+            slider.setSpeed(0.5);
+            
+        }
+
+    
 
 
 
