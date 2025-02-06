@@ -3,12 +3,17 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+
 public class Drivetrain {
     private DcMotor frontRight;     // Creating all object
     private DcMotor frontLeft;
     private DcMotor rearRight;
     private DcMotor rearLeft;
     private  boolean _state;
+    double cm = (569.6)/(9.6 * 3.14);
+    int cm_entier = (int)cm;
+
+    
     
     public Drivetrain(DcMotor frontLeft, DcMotor frontRight, DcMotor rearLeft, DcMotor rearRight){
         this.frontLeft = frontLeft;
@@ -21,8 +26,8 @@ public class Drivetrain {
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         rearRight.setDirection(DcMotorSimple.Direction.FORWARD);
         rearLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-
-
+// FORWARD
+// REVERSE
     }
     public boolean slowMode = false;
     public void switchState(){
@@ -45,10 +50,10 @@ public class Drivetrain {
            rearLeft.setPower(y/2 - x/2 + r/2);
            rearRight.setPower(y/2 + x/2 -r/2);
        }else {
-           frontLeft.setPower(y + x + r);
-           frontRight.setPower(y - x - r);
-           rearLeft.setPower(y - x + r);
-           rearRight.setPower(y + x - r);
+           frontLeft.setPower(x + y + r);
+           frontRight.setPower(x - y - r);
+           rearLeft.setPower(x - y + r);
+           rearRight.setPower(x + y - r);
        }
 
     }
@@ -107,10 +112,10 @@ public class Drivetrain {
     }
 
     public void setAllPosition(double speed, double positionRight, double positionLeft){
-        setFrontRightPosition(speed, (int) positionRight*720);
-        setFrontLeftPosition(speed, (int) positionLeft*720);
-        setRearRightPosition(speed, (int) positionRight*720);
-        setRearLeftPosition(speed, (int) positionLeft*720);
+        setFrontRightPosition(speed, (int) positionRight*15);
+        setFrontLeftPosition(speed, (int) positionLeft*15);
+        setRearRightPosition(speed, (int) positionRight*15);
+        setRearLeftPosition(speed, (int) positionLeft*15);
 
         while (motorIsBusy()){
 
@@ -143,7 +148,7 @@ public class Drivetrain {
     public void setAllPositionCm(double speed, double positionRight, double positionLeft){
 
 
-        setAllPosition(speed, positionRight*1.29/19.84, positionLeft*1.29/19.84);
+        setAllPosition(speed, positionRight*cm_entier, positionLeft*cm_entier);
     }
 
 
