@@ -54,20 +54,30 @@ public class AutonomousTest extends LinearOpMode {
                 telemetry.addData("FrontLeftPosition", drivetrain.getFrontLeftPosition());
                 telemetry.addData("RearRightPosition", drivetrain.getRearRightPosition());
                 telemetry.addData("RearLeftPosition", drivetrain.getRearLeftPosition());
-      
+
 
         waitForStart();
+                                box.setSpeed(0.75);
+
+                pivot.setSpeed(1);
+
+        drivetrain.setAllPosition(.25, -100, -100);
+
 
         pivot.setSpeed(1);
-        sleep(150);
-                slider.setAllPosition(1 , 7);
 
-        drivetrain.setAllPosition(.25, -2, -2);
         sleep(150);
-        box.setSpeed(-0.75);
-        sleep(150);
-                        slider.setAllPosition(1 , -7);
-        pivot.setSpeed(-5);
+                        box.setSpeed(0);
+sleep(300);
+                slider.setAllPosition(1 , -7);
+sleep(50);
+        box.setSpeed(-8);
+sleep(1000);
+                                    box.setSpeed(0);
+
+    slider.setAllPosition(1 , 6);
+
+
 
     
 
